@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, Sequelize) => {
-  const Likes = sequelize.define('Likes', {
+  const Comments = sequelize.define('Comments', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -23,6 +23,10 @@ module.exports = (sequelize, Sequelize) => {
         key: 'id'
       }
     },
+    content: {
+      type: Sequelize.STRING(1000),
+      allowNull: false
+    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE
@@ -32,18 +36,18 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.DATE
     }
   }, {
-    tableName: 'likes'
+    tableName: 'comments'
   });
-  Likes.associate = function(models) {
+  Comments.associate = function(models) {
     // associations can be defined here
 
-    Likes.belongsTo(models.Contents, {
+    Comments.belongsTo(models.Contents, {
       foreignKey: 'content_id'
     });
 
-    Likes.belongsTo(models.Users, {
+    Comments.belongsTo(models.Users, {
       foreignKey: 'user_id'
     });
   };
-  return Likes;
+  return Comments;
 };

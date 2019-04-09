@@ -14,4 +14,6 @@ yarn add sequelize-cli sequelize mysql2
 ..\node_modules\.bin\sequelize seed:generate --name TestData  //创建TestData测试数据的js文件
 ..\node_modules\.bin\sequelize db:seed:all  //导入测试数据文件
 
+supervisor app.js
+
 ```
