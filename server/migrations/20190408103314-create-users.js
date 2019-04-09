@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false
       },
       password: {
-        type: Sequelize.STRING(32),
+        type: Sequelize.CHAR(32),
         allowNull: false
       },
       createdAt: {
@@ -29,12 +29,11 @@ module.exports = {
       charset: 'utf8mb4',
       collate: 'utf8mb4_bin'
     }).then(() => {
-      //添加索引
       return queryInterface.addIndex('users', {
         name: 'username',
-        unique: true, //该索引为唯一 不允许重复值
+        unique: true,
         fields: ['username']
-      })
+      });
     });
   },
   down: (queryInterface, Sequelize) => {

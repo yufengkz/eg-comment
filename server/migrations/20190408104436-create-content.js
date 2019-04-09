@@ -20,7 +20,7 @@ module.exports = {
         type: Sequelize.STRING(1000),
         allowNull: false
       },
-      link_count: {
+      like_count: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0
@@ -43,12 +43,10 @@ module.exports = {
       charset: 'utf8mb4',
       collate: 'utf8mb4_bin'
     }).then(() => {
-      //添加索引
-      return queryInterface.addIndex('contents', {
+      queryInterface.addIndex('contents', {
         name: 'user_id',
-        unique: true, //该索引为唯一 不允许重复值
         fields: ['user_id']
-      })
+      });
     });
   },
   down: (queryInterface, Sequelize) => {

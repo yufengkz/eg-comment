@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Comments', {
+    return queryInterface.createTable('Likes', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,10 +16,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      content: {
-        type: Sequelize.STRING(1000),
-        allowNull: false
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -29,22 +25,22 @@ module.exports = {
         type: Sequelize.DATE
       }
     }, {
-      tableName: 'comments',
+      tableName: 'likes',
       charset: 'utf8mb4',
       collate: 'utf8mb4_bin'
     }).then(() => {
-      queryInterface.addIndex('comments', {
+      queryInterface.addIndex('likes', {
         name: 'content_id',
         fields: ['content_id']
       });
     }).then(() => {
-      queryInterface.addIndex('comments', {
+      queryInterface.addIndex('likes', {
         name: 'user_id',
         fields: ['user_id']
       });
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Comments');
+    return queryInterface.dropTable('Likes');
   }
 };
