@@ -1,4 +1,4 @@
-### test    147  27
+### test    158  5
 
 ```
 yarn add sequelize-cli sequelize mysql2
