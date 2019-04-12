@@ -1,5 +1,6 @@
 const KoaRouter = require('koa-router')
 const md5 = require('md5')
+const Sequelize = require('sequelize')
 
 const Models = require('../models')
 
@@ -140,6 +141,23 @@ router.post(`/like`, async ctx => {
             message: '没有对应的内容'
         }
     }
+    //查询当前用户有没有点过赞
+    let like = await Models.Likes.findOne({
+        where: {
+            [Sequelize.Op.and]: [
+                { content_id: contentId },
+                { user_id: uid },
+            ]
+        }
+    })
+    if(like){
+        return ctx.body = {
+            code: 3,
+            data: '',
+            message: '您已经点过赞了'
+        }
+    }
+    //点赞+1
     content.set('like_count', content.get('like_count') + 1)
     await content.save()  //保存
 
